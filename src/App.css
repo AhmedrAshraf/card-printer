@@ -1,20 +1,76 @@
+body {
+  background-color: #1b1c1c;
+}
 .App {
-  height: 95vh;
+  height: 90vh;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 .card-box {
+  display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 .card {
-  width: 30rem;
-  height: 30rem;
+  width: 80vh;
+  height: 80vh;
 }
 .user-img {
-  width: 10rem;
-  height: 10rem;
+  width: 20.2vh;
+  height: 16vh;
+  bottom: 17.8vh;
+  margin-left: 1.5vh;
+  position: absolute;
+  border-radius: 12.3vh / 10vh;
 }
 .user-name {
-  font-size: 1rem;
+  bottom: 12.2vh;
+  font-size: 2.5vh;
+  color: #97404f;
+  margin-left: 10px;
+  font-weight: bold;
+  position: absolute;
+  font-family: NokaBold;
+  transform: perspective(200px) rotateX(30deg);
+}
+.button {
+  width: 20vh;
+  padding: 10px !important;
+  margin: 0 10px !important;
+  border-radius: 100px !important;
+  font-family: NokaSemiBold !important;
+  background-color: #2a2c2b !important;
+}
+.btn {
+  width: 5rem;
+  padding: 10px !important;
+  border-radius: 100px !important;
+  font-family: NokaSemiBold !important;
+  background-color: #2a2c2b !important;
+}
+.butRow {
+  width: 80vh;
+  bottom: 1rem;
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+}
+.notfound {
+  color: #2a2c2b;
+}
+
+@font-face {
+  font-family: NokaSemiBold;
+  src: url(./assets/fonts/NokaSemiBold.ttf);
+}
+@font-face {
+  font-family: NokaMedium;
+  src: url(./assets/fonts/NokaMedium.ttf);
+}
+@font-face {
+  font-family: NokaBold;
+  src: url(./assets/fonts/NokaBold.ttf);
 }
