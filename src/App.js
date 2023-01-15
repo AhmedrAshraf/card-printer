@@ -103,7 +103,7 @@ function App() {
           <div className="card-box" ref={ref}>
             <img src={card} className="card" />
             <img src={currentData?.c?.[1]?.v} className="user-img" />
-            <p className="user-name">{currentData?.c?.[0]?.v}</p>
+            <p className="user-name">@{currentData?.c?.[0]?.v}</p>
           </div>
           <div className="butRow">
             <Button className="btn" variant="contained" onClick={handleBack}>
