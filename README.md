@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# 🧾 Auto Card Generator from Google Sheets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project connects to a Google Sheet to fetch user data and automatically generate printable cards with a single click. It simplifies the process of creating personalized cards for multiple users without manual entry, saving time and reducing errors.
 
-## Available Scripts
+📌 Features
+🔗 Connects directly to a Google Sheet via API
 
-In the project directory, you can run:
+📤 Fetches all user data in real-time
 
-### `npm start`
+🖨️ Automatically generates styled user cards
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🖱️ One-click to print all cards
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🎨 Customizable card design
 
-### `npm test`
+🛠️ Tech Stack
+Frontend: HTML, CSS, JavaScript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Google Sheets API: For data fetching
 
-### `npm run build`
+Print Handling: window.print() and custom CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🚀 Getting Started
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/your-username/auto-card-generator.git
+cd auto-card-generator
+2. Setup Google Sheet
+Create a new Google Sheet with the following columns: Name, Email, Phone, ID, etc.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Go to File > Share > Publish to web
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Then go to Extensions > Apps Script and use Google Apps Script to create a web API, or use a third-party tool like Sheet.best, SheetDB, or [Google Visualization API].
 
-### `npm run eject`
+3. Configure API Endpoint
+In script.js (or wherever your fetch call is made), update the API URL:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+js
+Copy
+Edit
+const SHEET_API_URL = "https://api.sheet.best/api/sheets/your-endpoint-id";
+🧾 How It Works
+Click the "Generate Cards" button.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app fetches all data from the connected Google Sheet.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Each user’s information is used to generate a custom card.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Cards are displayed on screen with a Print button.
 
-## Learn More
+Print the cards directly or save them as PDF.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+🖼️ Sample Card Preview
+(Insert screenshot or GIF here)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+📄 Example Google Sheet Structure
+Name	Email	Phone	ID
+John Doe	john@example.com	1234567890	A001
+Jane Roe	jane@example.com	9876543210	A002
 
-### Code Splitting
+✅ To-Do / Future Features
+ Add QR code on each card
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ Export cards to PDF instead of direct print
 
-### Analyzing the Bundle Size
+ Add support for custom fields
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ Authentication for accessing the sheet
 
-### Making a Progressive Web App
+📬 Contact
+If you like the project or have suggestions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+📧 Email: your.email@example.com
 
-### Advanced Configuration
+💼 LinkedIn: your-profile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📜 License
+This project is licensed under the MIT License.
