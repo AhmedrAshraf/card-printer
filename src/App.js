@@ -9,14 +9,16 @@ function App() {
   const ref = useRef();
   const [idx, setIdx] = useState(0);
   const [userData, setUserData] = useState([]);
-  const [currentData, setCurrentData] = useState();
+  const [currentData, setCurrentData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  let shetId = "1NUI1nevsjrE0SbyoSOoG_bFWpoRiFGTxu732w2QFDRs";
-  let shetTitle =
-    "reportSubmissions_Wed Jan 11 2023 13:10:52 GMT+0100 (heure normale d’Europe centrale)";
-  let shetCount = "A2:B500";
+  const shetId = "1_m1r4uqhlNMosyy5GQBg0XgqqKGCqfJWyydwnIARAxg";
+  const shetTitle =
+    "reportSubmissions_Wed Jan 11 2023 13:10:52 GMT+0100 (heure normale d'Europe centrale)";
+  const shetCount = "A2:C100";
 
-  let fullUrl =
+  const fullUrl =
     "https://docs.google.com/spreadsheets/d/" +
     shetId +
     "/gviz/tq?sheet=" +
@@ -25,107 +27,155 @@ function App() {
     shetCount;
 
   useEffect(() => {
-    fetch(fullUrl)
-      .then((res) => res.text())
-      .then((rep) => {
-        let db = JSON.parse(rep.substr(47).slice(0, -2));
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(fullUrl);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const text = await response.text();
+        const db = JSON.parse(text.substr(47).slice(0, -2));
         setUserData(db.table.rows);
         setCurrentData(db.table.rows[0]);
-      });
-  }, []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [fullUrl]);
 
   const handleNext = () => {
-    setIdx((prevTime) => prevTime + 1);
-    setCurrentData(userData[idx + 1]);
+    if (idx < userData.length - 1) {
+      setIdx((prevIdx) => prevIdx + 1);
+      setCurrentData(userData[idx + 1]);
+    }
   };
 
   const handleBack = () => {
     if (idx > 0) {
-      setIdx((prevTime) => prevTime - 1);
+      setIdx((prevIdx) => prevIdx - 1);
       setCurrentData(userData[idx - 1]);
     }
   };
 
-  const handleGenerator = async () => {
-    setIdx((prevTime) => prevTime + 1);
-    setCurrentData(userData[idx + 1]);
-    const element = ref.current;
-    const canvas = await html2canvas(element, { useCORS: true, scale: 2 });
-
-    const dataset = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-
-    if (typeof link.download === "string") {
-      link.href = dataset;
-      link.download = "image.png";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      window.open(dataset);
-    }
-  };
-
-  const handleScript = async () => {
-    let id = idx
-    let abc = setInterval(async () => {
-      id = id + 1
-      setIdx(id);
-      setCurrentData(userData[id]);
-      const element = ref.current;
-      const canvas = await html2canvas(element, { useCORS: true, scale: 2 });
-
+  const downloadImage = async (element) => {
+    try {
+      const canvas = await html2canvas(element, { 
+        useCORS: true, 
+        scale: 2,
+        logging: false 
+      });
       const dataset = canvas.toDataURL("image/png");
       const link = document.createElement("a");
 
       if (typeof link.download === "string") {
         link.href = dataset;
-        link.download = "image.png";
-
+        link.download = `card_${currentData?.c?.[0]?.v || 'user'}.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       } else {
         window.open(dataset);
       }
+    } catch (err) {
+      setError('Failed to generate image');
+    }
+  };
+
+  const handleGenerator = async () => {
+    if (idx < userData.length - 1) {
+      setIdx((prevIdx) => prevIdx + 1);
+      setCurrentData(userData[idx + 1]);
+      await downloadImage(ref.current);
+    }
+  };
+
+  const handleScript = async () => {
+    let id = idx;
+    const interval = setInterval(async () => {
+      if (id < userData.length - 1) {
+        id = id + 1;
+        setIdx(id);
+        setCurrentData(userData[id]);
+        await downloadImage(ref.current);
+      } else {
+        clearInterval(interval);
+      }
     }, 1000);
+
     setTimeout(() => {
-      clearInterval(abc);
+      clearInterval(interval);
     }, 10000);
   };
+
+  if (isLoading) {
+    return (
+      <div className="App">
+        <h1 className="notfound">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="App">
+        <h1 className="notfound">Error: {error}</h1>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Header />
-      {!!userData.length ? (
+      {userData.length > 0 ? (
         <div className="App">
           <div className="card-box" ref={ref}>
-            <img src={card} className="card" />
-            <img src={currentData?.c?.[1]?.v} className="user-img" />
+            <img src={card} className="card" alt="Card template" />
+            <img 
+              src={currentData?.c?.[2]?.v} 
+              className="user-img" 
+              alt={`Profile of ${currentData?.c?.[0]?.v || 'user'}`} 
+              style={{border: '1px solid gainsboro'}} 
+            />
             <p className="user-name">@{currentData?.c?.[0]?.v}</p>
           </div>
           <div className="butRow">
-            <Button className="btn" variant="contained" onClick={handleBack}>
+            <Button 
+              className="btn" 
+              variant="contained" 
+              onClick={handleBack}
+              disabled={idx === 0}
+            >
               Back
             </Button>
             <div>
-            <Button
-              className="button"
-              variant="contained"
-              onClick={handleGenerator}
+              <Button
+                className="button"
+                variant="contained"
+                onClick={handleGenerator}
+                disabled={idx >= userData.length - 1}
+              >
+                Download
+              </Button>
+              <Button
+                className="button"
+                variant="contained"
+                onClick={handleScript}
+                disabled={idx >= userData.length - 1}
+              >
+                Print 10 Cards
+              </Button>
+            </div>
+            <Button 
+              className="btn" 
+              variant="contained" 
+              onClick={handleNext}
+              disabled={idx >= userData.length - 1}
             >
-              Download Card
-            </Button>
-            <Button
-              className="button"
-              variant="contained"
-              onClick={handleScript}
-            >
-              Print 10 Cards
-            </Button>
-          </div>
-            <Button className="btn" variant="contained" onClick={handleNext}>
               Next
             </Button>
           </div>

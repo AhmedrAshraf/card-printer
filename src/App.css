@@ -1,5 +1,10 @@
 body {
-  background-color: #1b1c1c;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  margin: 0;
+  padding: 0;
+  font-family: NokaSemiBold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 .App {
   height: 90vh;
@@ -7,16 +12,32 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  padding: 0 2rem;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
 }
 .card-box {
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  perspective: 1000px;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+}
+.card-box:hover {
+  transform: scale(1.02) rotateY(5deg);
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
 }
 .card {
   width: 80vh;
   height: 80vh;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
 }
 .user-img {
   width: 20.2vh;
@@ -25,44 +46,146 @@ body {
   margin-left: 1.5vh;
   position: absolute;
   border-radius: 12.3vh / 10vh;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1) contrast(1.1);
+}
+.user-img:hover {
+  transform: scale(1.05) rotate(2deg);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  filter: brightness(1.2) contrast(1.2);
 }
 .user-name {
   bottom: 13vh;
   font-size: 2vh;
-  color: #97404f;
+  color: #fff;
   margin-left: 10px;
   position: absolute;
   letter-spacing: 0.2vh;
   font-family: NokaSemiBold;
   text-transform: uppercase;
   transform: perspective(200px) rotateX(30deg);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.5vh 1vh;
+  border-radius: 4px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b, 0 0 15px #ff6b6b;
+  }
+  to {
+    text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 0 0 30px #ff6b6b;
+  }
 }
 .button {
   width: 20vh;
-  padding: 10px !important;
+  padding: 14px !important;
   margin: 0 10px !important;
   border-radius: 100px !important;
   font-family: NokaSemiBold !important;
-  background-color: #2a2c2b !important;
+  background: linear-gradient(45deg, #4a00e0, #8e2de2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  position: relative;
+  overflow: hidden;
+}
+.button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+  background: linear-gradient(45deg, #8e2de2, #4a00e0) !important;
+}
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+.button:hover::before {
+  left: 100%;
 }
 .btn {
   width: 5rem;
-  padding: 10px !important;
+  padding: 14px !important;
   border-radius: 100px !important;
   font-family: NokaSemiBold !important;
-  background-color: #2a2c2b !important;
+  background: linear-gradient(45deg, #4a00e0, #8e2de2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+  background: linear-gradient(45deg, #8e2de2, #4a00e0) !important;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+.btn:hover::before {
+  left: 100%;
 }
 .butRow {
+  bottom: 0px !important;
   width: 80vh;
-  bottom: 1rem;
   display: flex;
   position: absolute;
   justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 .notfound {
-  color: #2a2c2b;
+  color: #fff;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @font-face {
   font-family: NokaSemiBold;
   src: url(./assets/fonts/NokaSemiBold.ttf);
@@ -74,4 +197,32 @@ body {
 @font-face {
   font-family: NokaBold;
   src: url(./assets/fonts/NokaBold.ttf);
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    width: 90vw;
+    height: 90vw;
+  }
+  
+  .user-img {
+    width: 22vw;
+    height: 18vw;
+  }
+  
+  .butRow {
+    width: 90vw;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .button {
+    width: 100%;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .user-name {
+    font-size: 1.5vh;
+  }
 }
