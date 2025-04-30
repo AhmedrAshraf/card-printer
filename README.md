@@ -1,4 +1,5 @@
-🧾 Auto Card Generator from Google Sheets
+# 🧾 Auto Card Generator from Google Sheets
+
 This project connects to a Google Sheet to fetch user data and automatically generate printable cards with a single click. It simplifies the process of creating personalized cards for multiple users without manual entry, saving time and reducing errors.
 
 📌 Features
