@@ -2,7 +2,6 @@ import "./App.css";
 import card from "./assets/card.png";
 import html2canvas from "html2canvas";
 import Header from "./components/header";
-import Button from "@mui/material/Button";
 import React, { useState, useRef, useEffect } from "react";
 
 function App() {
@@ -115,7 +114,7 @@ function App() {
   if (isLoading) {
     return (
       <div className="App">
-        <h1 className="notfound">Loading...</h1>
+        <h1 className="notfound"><div class="loader"></div></h1>
       </div>
     );
   }
@@ -144,41 +143,43 @@ function App() {
             <p className="user-name">@{currentData?.c?.[0]?.v}</p>
           </div>
           <div className="butRow">
-            <Button 
-              className="btn" 
-              variant="contained" 
-              onClick={handleBack}
-              disabled={idx === 0}
-            >
-              Back
-            </Button>
-            <div>
-              <Button
-                className="button"
-                variant="contained"
-                onClick={handleGenerator}
-                disabled={idx >= userData.length - 1}
-              >
-                Download
-              </Button>
-              <Button
-                className="button"
-                variant="contained"
-                onClick={handleScript}
-                disabled={idx >= userData.length - 1}
-              >
-                Print 10 Cards
-              </Button>
-            </div>
-            <Button 
-              className="btn" 
-              variant="contained" 
-              onClick={handleNext}
-              disabled={idx >= userData.length - 1}
-            >
-              Next
-            </Button>
-          </div>
+  <button 
+    className="button-86" 
+    role="button" 
+    variant="contained" 
+    onClick={handleBack}
+    disabled={idx === 0}
+  >
+    Back
+  </button>
+
+  <button 
+    className="button-86" 
+    variant="contained"
+    onClick={handleGenerator}
+    disabled={idx >= userData.length - 1}
+  >
+    Download
+  </button>
+
+  <button 
+    className="button-86" 
+    variant="contained"
+    onClick={handleScript}
+    disabled={idx >= userData.length - 1}
+  >
+    Print 10 Cards
+  </button>
+
+  <button 
+    className="button-86" 
+    variant="contained" 
+    onClick={handleNext}
+    disabled={idx >= userData.length - 1}
+  >
+    NEXT
+  </button>
+</div>
         </div>
       ) : (
         <div className="App">

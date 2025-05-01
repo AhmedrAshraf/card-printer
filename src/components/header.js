@@ -5,10 +5,10 @@ import Typography from "@mui/material/Typography";
 
 export default function ButtonAppBar() {
   return (
-    <AppBar position="static" style={{ backgroundColor: "#2A2C2B" }}>
+    <AppBar position="static" style={{ backgroundColor: "#333533 ", }}>
       <Toolbar style={{ textAlign: "center" }}>
         <Typography
-          variant="h6"
+          variant="h5"
           component="div"
           sx={{ flexGrow: 1, fontFamily: "NokaBold" }}
         >
