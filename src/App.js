@@ -18,13 +18,7 @@ function App() {
     "reportSubmissions_Wed Jan 11 2023 13:10:52 GMT+0100 (heure normale d'Europe centrale)";
   const shetCount = "A2:C100";
 
-  const fullUrl =
-    "https://docs.google.com/spreadsheets/d/" +
-    shetId +
-    "/gviz/tq?sheet=" +
-    shetTitle +
-    "&range=" +
-    shetCount;
+  const fullUrl = `https://docs.google.com/spreadsheets/d/${shetId}/gviz/tq?sheet=${shetTitle}&range=${shetCount}`
 
   useEffect(() => {
     const fetchData = async () => {

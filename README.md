@@ -2,79 +2,86 @@
 
 This project connects to a Google Sheet to fetch user data and automatically generate printable cards with a single click. It simplifies the process of creating personalized cards for multiple users without manual entry, saving time and reducing errors.
 
-📌 Features
-🔗 Connects directly to a Google Sheet via API
+## 📌 Features
+- 🔗 Connects directly to a Google Sheet via API
 
-📤 Fetches all user data in real-time
+- 📤 Fetches all user data in real-time
 
-🖨️ Automatically generates styled user cards
+- 🖨️ Automatically generates styled user cards
 
-🖱️ One-click to print all cards
+- 🖱️ One-click to print all cards
 
-🎨 Customizable card design
+- 🎨 Customizable card design
 
-🛠️ Tech Stack
-Frontend: HTML, CSS, JavaScript
+## 🛠️ Tech Stack
+- **Frontend**: HTML, CSS, JavaScript
 
-Google Sheets API: For data fetching
+- **Google Sheets API**: For data fetching
 
-Print Handling: window.print() and custom CSS
+- **Print Handling**: window.print() and custom CSS
 
-🚀 Getting Started
-1. Clone the Repository
-bash
+## 🚀 Getting Started
+### 1. Clone the Repository
 Copy
 Edit
-git clone https://github.com/your-username/auto-card-generator.git
-cd auto-card-generator
-2. Setup Google Sheet
-Create a new Google Sheet with the following columns: Name, Email, Phone, ID, etc.
+```bash
+git clone https://github.com/AhmedrAshraf/card-printer.git
+cd card-printer
+```
 
-Go to File > Share > Publish to web
+### 2. Setup Google Sheet
+- Create a new Google Sheet with the following columns: `Name`, `Email`, `Phone`, `ID`, etc.
 
-Then go to Extensions > Apps Script and use Google Apps Script to create a web API, or use a third-party tool like Sheet.best, SheetDB, or [Google Visualization API].
+- Go to `File > Share > Publish to web`
 
-3. Configure API Endpoint
-In script.js (or wherever your fetch call is made), update the API URL:
+- Then go to `Extensions > Apps Script` and use Google Apps Script to create a web API, or use a third-party tool like **Sheet.best**, **SheetDB**, or [**Google Visualization API**].
 
-js
+### 3. Configure API Endpoint
+In `script.js` (or wherever your fetch call is made), update the API URL:
+
 Copy
 Edit
+
+```javascript
 const SHEET_API_URL = "https://api.sheet.best/api/sheets/your-endpoint-id";
-🧾 How It Works
-Click the "Generate Cards" button.
+```
 
-The app fetches all data from the connected Google Sheet.
+## 🧾 How It Works
+1. Click the "**Generate Cards**" button.
 
-Each user’s information is used to generate a custom card.
+2. The app fetches all data from the connected Google Sheet.
 
-Cards are displayed on screen with a Print button.
+3. Each user’s information is used to generate a custom card.
 
-Print the cards directly or save them as PDF.
+4. Cards are displayed on screen with a **Print** button.
 
-🖼️ Sample Card Preview
-(Insert screenshot or GIF here)
+5. Print the cards directly or save them as PDF.
 
-📄 Example Google Sheet Structure
-Name	Email	Phone	ID
+
+
+## 🖼️ Sample Card Preview
+
+## 📄 Example Google Sheet Structure
+```bash
+Name	    Email	            Phone	    ID
 John Doe	john@example.com	1234567890	A001
 Jane Roe	jane@example.com	9876543210	A002
+```
+## ✅ To-Do / Future Features
+ - Add QR code on each card
 
-✅ To-Do / Future Features
- Add QR code on each card
+ - Export cards to PDF instead of direct print
 
- Export cards to PDF instead of direct print
+ - Add support for custom fields
 
- Add support for custom fields
+ - Authentication for accessing the sheet
 
- Authentication for accessing the sheet
-
-📬 Contact
+## 📬 Contact
 If you like the project or have suggestions:
 
-📧 Email: your.email@example.com
+- 📧 Email: your.email@example.com
 
-💼 LinkedIn: your-profile
+- 💼 LinkedIn: [Asha Ram](https://linkedin.com/in/asha-ram)
 
-📜 License
+## 📜 License
 This project is licensed under the MIT License.
